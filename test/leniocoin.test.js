@@ -14,9 +14,9 @@ contract('LenioCoin', (accounts) => {
     describe('Deployment', async () => {
         it('Sets the total supply at deployment', async () => {
             const totalSupply = await lenio.totalSupply();
-            assert.equal(totalSupply.toNumber(), 150000, 'The initial supply is not correct');
+            assert.equal(totalSupply.toNumber(), 1000000, 'The initial supply is not correct');
             const balance = await lenio.balanceOf(accounts[0]);
-            assert.equal(balance.toNumber(), 150000, 'The initial balance is not allocated to the admin');
+            assert.equal(balance.toNumber(), 1000000, 'The initial balance is not allocated to the admin');
         });
         it('Has the correct name and symbol', async () => {
             const name = await lenio.name();
@@ -27,7 +27,7 @@ contract('LenioCoin', (accounts) => {
     });
     describe('Transfer', async () => {
         it('should throw if the sender does not have enough funds', async () => {
-            await lenio.transfer(accounts[1], 10000000, { from: accounts[0] }).should.be.rejected;
+            await lenio.transfer(accounts[1], 90000000, { from: accounts[0] }).should.be.rejected;
         })
 
         it('The result balance after transfer is correct', async () => {
