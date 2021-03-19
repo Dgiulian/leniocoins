@@ -1,16 +1,15 @@
-import React, { useState } from 'react'
-import './App.css'
+import React from 'react'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="App">
-      <header className="App-header">
-
+    <div className="bg-gray-300 ">
+      <header className="container mx-auto">
+        <h1 className="py-4">Lenio Coins</h1>
       </header>
     </div>
   )
 }
 
 export default App
+
+
