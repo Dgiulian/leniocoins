@@ -1,27 +1,31 @@
 import React, { useContext } from 'react'
+import Navbar from './components/Navbar';
+import { Web3Context } from './context/Web3Context'
 
 function App() {
   // Instantiate web3
   // Connect to wallet and display account
   // Instantiate SaleContract (TruffleContract? Drizzle?)
   // Instantiate TokenContract (TruffleContract? Drizzle?)
-  // Display loading state while connecting to wallet
+  // Display loading state while connecting to wallet  
+
   return (
-    <div className="bg-gray-300 ">
-      <header className="container mx-auto">
-        <h1 className="py-4">Lenio Coins</h1>
-      </header>
+    <div className="min-h-screen">
 
-      <div>
+      <Navbar />
+
+      <div className="container mx-auto mt-32">
+        <h1 className="text-xl mb-2"> Buy Lenio coins</h1>
         <input type="number"
-          placeholder="Insert the number of tokens"
+          className="rounded border"
           pattern="[0-9]" min="1" />
-        |<button>Buy tokens</button>
+        <button className="bg-green-500 px-4 py-2 rounded ml-1 border">Buy tokens</button>
       </div>
-
+      {/*
       <div>
-        progress soldTokens / totalSupply
+      progress soldTokens / totalSupply
       </div>
+    */}
     </div>
   )
 }
