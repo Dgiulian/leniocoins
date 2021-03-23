@@ -4,7 +4,8 @@ import LenioCoin from '../abis/LenioCoin.json'
 export let web3;
 export async function loadWeb3() {
     if (window.ethereum) {
-        web3 = new Web3(window.ethereum);
+        web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:7545'));
+        //web3 = new Web3(window.ethereum);
         await window.ethereum.enable();
     } else if (window.web3) {
         web3 = new Web3(window.web3.currentProvider);
@@ -47,9 +48,9 @@ export class LenioCoinContract {
     transfer() {
 
     }
-
 }
 export class CoinSaleContract {
+
     constructor(networkId) {
         const contractData = CoinSale.networks[networkId];
         if (contractData) {
@@ -69,49 +70,12 @@ export class CoinSaleContract {
             return this.coinSale.methods.tokensSold().call();
         }
     }
-    async buyTokens(numTokens) {
-        const tokenPrice = await this.getTokenPrice();
-        const value = numTokens;
-        // this.coinSale.buyTokens(numTokens).send({ from: this.address, value })
+    buyTokens(numTokens, tokenPrice, account) {
+        //const tokenPrice = await this.getTokenPrice();
+        const value = numTokens * tokenPrice;
+        console.log(account, value, numTokens, tokenPrice);
+        return new Promise((resolve, reject) => {
+            this.coinSale.methods.buyTokens(numTokens).send({ from: account, value }).on('receipt', resolve).on('error', reject);
+        });
     }
 }
-
-/*
-async function loadBlockchainData() {
-
-    // Load DaiToken
-
-    const daiTokenData = DaiToken.networks[networkId];
-    if (daiTokenData) {
-        const daiToken = new web3.eth.Contract(DaiToken.abi, daiTokenData.address);
-        this.setState({ daiToken });
-        let daiTokenBalance = await daiToken.methods.balanceOf(this.state.account).call();
-        this.setState({ daiTokenBalance: daiTokenBalance.toString() });
-    } else {
-        window.alert(['DaiToken contract not deployed to detected network']);
-    }
-    const dappTokenData = DappToken.networks[networkId];
-    if (dappTokenData) {
-        const dappToken = new web3.eth.Contract(DappToken.abi, dappTokenData.address);
-        this.setState({ dappToken });
-        let dappTokenBalance = await dappToken.methods.balanceOf(this.state.account).call();
-        this.setState({ dappTokenBalance: dappTokenBalance.toString() });
-    } else {
-        window.alert(['DappToken contract not deployed to detected network']);
-    }
-
-    const tokenFarmData = TokenFarm.networks[networkId];
-    if (tokenFarmData) {
-        const tokenFarm = new web3.eth.Contract(TokenFarm.abi, tokenFarmData.address);
-        this.setState({ tokenFarm });
-        let stakingBalance = await tokenFarm.methods.stakingBalance(this.state.account).call();
-        console.log(stakingBalance);
-        this.setState({ stakingBalance: stakingBalance.toString() });
-    } else {
-        window.alert(['TokenFarm contract not deployed to detected network']);
-    }
-    this.setState({ loading: false });
-
-}
-*/
-
