@@ -21,6 +21,10 @@ export async function getAccount(idx = 0) {
         return accounts[idx]
     }
 }
+export async function getAccounts() {
+    return web3.eth.getAccounts();
+}
+
 export async function getNetworkId() {
     return window.web3.eth.net.getId();
 }

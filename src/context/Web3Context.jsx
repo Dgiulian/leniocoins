@@ -3,7 +3,7 @@ import { LenioCoinContract, getAccount, getNetworkId, CoinSaleContract } from '.
 const Web3Context = createContext(null);
 
 const Web3Provider = ({ children }) => {
-    const [account, setAccount] = useState(null);
+    const [account, setAccount] = useState();
     const [networkId, setNetworkId] = useState(null);
     const [lenioCoin, setLenioCoin] = useState(null);
     const [coinSale, setCoinSale] = useState(null);
@@ -23,7 +23,7 @@ const Web3Provider = ({ children }) => {
         loadData();
     }, [])
     return (
-        <Web3Context.Provider value={{ account, networkId, coinSale, lenioCoin }}>
+        <Web3Context.Provider value={{ account, setAccount, networkId, coinSale, lenioCoin }}>
             {children}
         </Web3Context.Provider>
     )
