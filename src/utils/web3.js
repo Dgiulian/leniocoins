@@ -35,7 +35,10 @@ export class LenioCoinContract {
         }
     }
     balanceOf(address) {
-        this.lenioCoin.methods.balanceOf(address).call();
+        return this.lenioCoin.methods.balanceOf(address).call();
+    }
+    getTotalSupply() {
+        return this.lenioCoin.methods.totalSupply().call();
     }
     transfer() {
 

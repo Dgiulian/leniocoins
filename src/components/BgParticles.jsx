@@ -8,7 +8,7 @@ function BgParticles() {
         background: {
             color: {
                 // value: "#0f2148",
-                value: "#456297",
+                value: "#152848",
             },
         },
         /* "fullScreen": {
