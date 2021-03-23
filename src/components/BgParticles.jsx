@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Particles from 'react-tsparticles';
 
 function BgParticles() {
@@ -16,7 +16,7 @@ function BgParticles() {
             "zIndex": 1
         }, */
         fpsLimit: 60,
-        interactivity: {
+        /*interactivity: {
             detectsOn: "canvas",
             events: {
                 onClick: {
@@ -44,7 +44,7 @@ function BgParticles() {
                     duration: 0.4,
                 },
             },
-        },
+        }, */
         particles: {
             color: {
                 value: "#ffffff",
@@ -97,4 +97,4 @@ function BgParticles() {
     )
 }
 
-export default BgParticles
+export default memo(BgParticles)
