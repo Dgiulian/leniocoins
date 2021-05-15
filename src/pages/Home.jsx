@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
-import BgParticles from './components/BgParticles';
-import Navbar from './components/Navbar';
-import { Web3Context } from './context/Web3Context';
-import { web3 } from './utils/web3';
+import Layout from '../components/Layout';
+import BgParticles from '../components/BgParticles';
+import { Web3Context } from '../context/Web3Context';
+import { web3 } from '../utils/web3';
 
-function App() {
+function Home() {
   // Instantiate web3
   // Connect to wallet and display account
   // Instantiate SaleContract (TruffleContract? Drizzle?)
@@ -38,10 +38,10 @@ function App() {
     });
   }
   return (
-    <div className="min-h-screen">
+    <Layout>
 
       <BgParticles />
-      <Navbar />
+
       <div className="relative z-10  px-4 mt-64 flex flex-col justify-center items-center">
         <div className="text-gray-200 border p-16 rounded-xl bg-black bg-opacity-30">
           <h1 className="text-2xl mb-2"> Buy Lenio coins</h1>
@@ -64,10 +64,10 @@ function App() {
       progress soldTokens / totalSupply
       </div>
     */}
-    </div>
+    </Layout>
   )
 }
 
-export default App
+export default Home
 
 
